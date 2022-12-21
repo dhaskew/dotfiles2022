@@ -6,3 +6,5 @@
 #cp or link zsh_functions to ~/.zsh_functions
 
 #cp or link zprofile to ~/.zprofile
+
+# aws profiles / secrets? - integrate with 1password cli?
