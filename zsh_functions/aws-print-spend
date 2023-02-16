@@ -5,22 +5,5 @@ export START_DATE_AWS=$(date +"%Y-%m-01") &&
 export END_DATE_AWS=$(date -v1d -v+1m -v-1d +"%Y-%m-%d") &&
 echo "start date: $START_DATE_AWS" &&
 echo "end date: $END_DATE_AWS" &&
-echo 'ft-daskew costs:' &&
-        
-aws ce get-cost-and-usage                                  \
- --time-period "Start=$START_DATE_AWS,End=$END_DATE_AWS"        \
- --metrics     'UnblendedCost'                          \
- --granularity 'MONTHLY'                                \
- --query       'ResultsByTime[*].Total.[UnblendedCost]' \
- --output      'table' \
- --profile ft-daskew &&
 
-echo 'default (blog?) costs:' &&
-
-aws ce get-cost-and-usage                                  \
- --time-period "Start=$START_DATE_AWS,End=$END_DATE_AWS"        \
- --metrics     'UnblendedCost'                          \
- --granularity 'MONTHLY'                                \
- --query       'ResultsByTime[*].Total.[UnblendedCost]' \
- --output      'table' \
- --profile default
+~/go/bin/aws-print-spend  ft-daskew default
